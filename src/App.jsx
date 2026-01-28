@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -8,15 +9,11 @@ import BookDetail from "./pages/BookDetail";
 import BorrowHistory from "./pages/BorrowHistory";
 import BorrowApproval from "./pages/BorrowApproval";
 import ReturnProcessing from "./pages/ReturnProcessing";
+import FineCalculation from "./pages/FineCalculation";
 import BookManagement from "./pages/BookManagement";
 import BookCopyManagement from "./pages/BookCopyManagement";
 import UserManagement from "./pages/UserManagement";
 import Reports from "./pages/Reports";
-import FineCalculation from "./pages/FineCalculation";
-
-
-
-import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -24,103 +21,26 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* your routes stay EXACTLY the same */}
-        {/* Public */}
-      <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
 
-      {/* Customer */}
-      <Route
-        path="/search"
-        element={
-          <ProtectedRoute role="customer">
-            <BookSearch />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/book/:isbn"
-        element={
-          <ProtectedRoute role="customer">
-            <BookDetail />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/history"
-        element={
-          <ProtectedRoute role="customer">
-            <BorrowHistory />
-          </ProtectedRoute>
-        }
-      />
+        {/* Customer */}
+        <Route path="/search" element={<ProtectedRoute role="customer"><BookSearch /></ProtectedRoute>} />
+        <Route path="/book/:isbn" element={<ProtectedRoute role="customer"><BookDetail /></ProtectedRoute>} />
+        <Route path="/history" element={<ProtectedRoute role="customer"><BorrowHistory /></ProtectedRoute>} />
 
-      {/* Staff */}
-      <Route
-        path="/approve"
-        element={
-          <ProtectedRoute role="staff">
-            <BorrowApproval />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/return"
-        element={
-          <ProtectedRoute role="staff">
-            <ReturnProcessing />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/fine"
-        element={
-          <ProtectedRoute role="staff">
-            <FineCalculation />
-          </ProtectedRoute>
-        }
-      />
+        {/* Staff */}
+        <Route path="/approve" element={<ProtectedRoute role="staff"><BorrowApproval /></ProtectedRoute>} />
+        <Route path="/return" element={<ProtectedRoute role="staff"><ReturnProcessing /></ProtectedRoute>} />
+        <Route path="/fine" element={<ProtectedRoute role="staff"><FineCalculation /></ProtectedRoute>} />
 
-
-
-      {/* Admin */}
-      <Route
-        path="/books"
-        element={
-          <ProtectedRoute role="admin">
-            <BookManagement />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/copies"
-        element={
-          <ProtectedRoute role="admin">
-            <BookCopyManagement />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/users"
-        element={
-          <ProtectedRoute role="admin">
-            <UserManagement />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/reports"
-        element={
-          <ProtectedRoute role="admin">
-            <Reports />
-          </ProtectedRoute>
-        }
-      />
+        {/* Admin */}
+        <Route path="/books" element={<ProtectedRoute role="admin"><BookManagement /></ProtectedRoute>} />
+        <Route path="/copies" element={<ProtectedRoute role="admin"><BookCopyManagement /></ProtectedRoute>} />
+        <Route path="/users" element={<ProtectedRoute role="admin"><UserManagement /></ProtectedRoute>} />
+        <Route path="/reports" element={<ProtectedRoute role="admin"><Reports /></ProtectedRoute>} />
       </Routes>
     </>
   );
 }
-
-
-
 
 export default App;

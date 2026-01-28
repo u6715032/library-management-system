@@ -1,28 +1,17 @@
-import { useNavigate } from "react-router-dom";
-
 export default function FineCalculation() {
-  const navigate = useNavigate();
+  const lateDays = 3;
+  const finePerDay = 10;
+  const totalFine = lateDays * finePerDay;
 
   return (
     <div className="container">
       <h2>Fine Calculation</h2>
 
-      <p><b>Customer:</b> John</p>
-      <p><b>Book:</b> Harry Potter</p>
-      <p><b>Borrow Date:</b> 10-Jan</p>
-      <p><b>Return Date:</b> 25-Jan</p>
-      <p><b>Late Days:</b> 4</p>
-      <p><b>Fine:</b> 20 Baht</p>
+      <p>Late Days: {lateDays}</p>
+      <p>Fine per Day: {finePerDay} Baht</p>
+      <h3>Total Fine: {totalFine} Baht</h3>
 
-      <button onClick={() => alert("Payment completed")}>
-        Mark as Paid
-      </button>
-
-      <br /><br />
-
-      <button onClick={() => navigate("/return")}>
-        Back
-      </button>
+      <button>Mark as Paid</button>
     </div>
   );
 }

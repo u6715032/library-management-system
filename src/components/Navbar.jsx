@@ -9,65 +9,37 @@ export default function Navbar() {
     navigate("/");
   };
 
-  if (!role) return null; // Hide on login page
+  if (!role) return null;
 
   return (
-    <nav style={styles.nav}>
-      <span style={styles.logo}>📚 Library</span>
+    <nav style={{ padding: 10, background: "#222" }}>
+      {role === "customer" && (
+        <>
+          <Link to="/search">Search</Link>{" | "}
+          <Link to="/history">My Borrows</Link>{" | "}
+          <Link to="/fines">My Fines</Link>
+        </>
+      )}
 
-      <div style={styles.links}>
-        {role === "customer" && (
-          <>
-            <Link to="/search">Search Books</Link>
-            <Link to="/history">My History</Link>
-          </>
-        )}
+      {role === "staff" && (
+        <>
+          <Link to="/approve">Approve</Link>{" | "}
+          <Link to="/return">Return</Link>{" | "}
+          <Link to="/fine">Fine</Link>
+        </>
+      )}
 
-        {role === "staff" && (
-          <>
-            <Link to="/approve">Approve Borrow</Link>
-            <Link to="/return">Return Books</Link>
-          </>
-        )}
+      {role === "admin" && (
+        <>
+          <Link to="/books">Books</Link>{" | "}
+          <Link to="/copies">Copies</Link>{" | "}
+          <Link to="/users">Users</Link>{" | "}
+          <Link to="/reports">Reports</Link>
+        </>
+      )}
 
-        {role === "admin" && (
-          <>
-            <Link to="/books">Books</Link>
-            <Link to="/copies">Copies</Link>
-            <Link to="/users">Users</Link>
-            <Link to="/reports">Reports</Link>
-          </>
-        )}
-      </div>
-
-      <button onClick={logout} style={styles.logout}>
-        Logout
-      </button>
+      {" | "}
+      <button onClick={logout}>Logout</button>
     </nav>
   );
 }
-
-const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "12px 24px",
-    background: "#111",
-    color: "#fff",
-  },
-  logo: {
-    fontWeight: "bold",
-  },
-  links: {
-    display: "flex",
-    gap: "15px",
-  },
-  logout: {
-    background: "#ff4d4d",
-    border: "none",
-    padding: "6px 12px",
-    color: "#fff",
-    cursor: "pointer",
-  },
-};
