@@ -12,6 +12,9 @@ import BookManagement from "./pages/BookManagement";
 import BookCopyManagement from "./pages/BookCopyManagement";
 import UserManagement from "./pages/UserManagement";
 import Reports from "./pages/Reports";
+import FineCalculation from "./pages/FineCalculation";
+
+
 
 import Navbar from "./components/Navbar";
 
@@ -68,6 +71,16 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/fine"
+        element={
+          <ProtectedRoute role="staff">
+            <FineCalculation />
+          </ProtectedRoute>
+        }
+      />
+
+
 
       {/* Admin */}
       <Route
