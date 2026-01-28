@@ -1,23 +1,27 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./layout/Layout";
+import { Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
-import BookSearch from "./pages/BookSearch";
-import BorrowHistory from "./pages/BorrowHistory";
-import BookDetail from "./pages/BookDetail";
-
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
+    <Routes>
+      {/* Public */}
+      <Route path="/" element={<Login />} />
 
-        <Route element={<Layout />}>
-          <Route path="/search" element={<BookSearch />} />
-          <Route path="/history" element={<BorrowHistory />} />
-          <Route path="/detail" element={<BookDetail />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      {/* Customer */}
+      <Route path="/search" element={<BookSearch />} />
+      <Route path="/book/:isbn" element={<BookDetail />} />
+      <Route path="/history" element={<BorrowHistory />} />
+
+      {/* Staff */}
+      <Route path="/approve" element={<BorrowApproval />} />
+      <Route path="/return" element={<ReturnProcessing />} />
+
+      {/* Admin */}
+      <Route path="/books" element={<BookManagement />} />
+      <Route path="/copies" element={<BookCopyManagement />} />
+      <Route path="/users" element={<UserManagement />} />
+      <Route path="/reports" element={<Reports />} />
+    </Routes>
   );
 }
+
+export default App;
