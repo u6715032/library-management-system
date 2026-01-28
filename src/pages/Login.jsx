@@ -1,24 +1,29 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
+  const [role, setRole] = useState("customer");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    localStorage.setItem("role", role);
+
+    if (role === "customer") navigate("/search");
+    if (role === "staff") navigate("/approve");
+    if (role === "admin") navigate("/books");
+  };
+
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
-        <h2>📚 Library System</h2>
-        <p>Select a role to enter the system.</p>
+    <div>
+      <h2>Login</h2>
 
-        <Link to="/search">
-          <button>Login as Customer</button>
-        </Link>
+      <select onChange={(e) => setRole(e.target.value)}>
+        <option value="customer">Customer</option>
+        <option value="staff">Staff</option>
+        <option value="admin">Admin</option>
+      </select>
 
-        <Link to="/search">
-          <button>Login as Staff</button>
-        </Link>
-
-        <Link to="/search">
-          <button>Login as Admin</button>
-        </Link>
-      </div>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
