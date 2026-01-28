@@ -1,5 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 
+// Public
+import Login from "./pages/Login";
+
+// Customer
+import BookSearch from "./pages/BookSearch";
+import BookDetail from "./pages/BookDetail";
+import BorrowHistory from "./pages/BorrowHistory";
+
+// Staff
+import BorrowApproval from "./pages/BorrowApproval";
+import ReturnProcessing from "./pages/ReturnProcessing";
+
+// Admin
+import BookManagement from "./pages/BookManagement";
+import BookCopyManagement from "./pages/BookCopyManagement";
+import UserManagement from "./pages/UserManagement";
+import Reports from "./pages/Reports";
+
 function App() {
   return (
     <Routes>
