@@ -13,10 +13,16 @@ import BookCopyManagement from "./pages/BookCopyManagement";
 import UserManagement from "./pages/UserManagement";
 import Reports from "./pages/Reports";
 
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
-    <Routes>
-      {/* Public */}
+    <>
+      <Navbar />
+
+      <Routes>
+        {/* your routes stay EXACTLY the same */}
+        {/* Public */}
       <Route path="/" element={<Login />} />
 
       {/* Customer */}
@@ -96,8 +102,12 @@ function App() {
           </ProtectedRoute>
         }
       />
-    </Routes>
+      </Routes>
+    </>
   );
 }
+
+
+
 
 export default App;
