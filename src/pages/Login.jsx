@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import "./Login.css";
 
-export default function Login() {
-  const [role, setRole] = useState("customer");
+function Login() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (role) => {
     localStorage.setItem("role", role);
 
     if (role === "customer") navigate("/search");
@@ -14,16 +13,25 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h1>📚 Library System</h1>
+        <p className="subtitle">Select a role to enter the system.</p>
 
-      <select onChange={(e) => setRole(e.target.value)}>
-        <option value="customer">Customer</option>
-        <option value="staff">Staff</option>
-        <option value="admin">Admin</option>
-      </select>
+        <button onClick={() => handleLogin("customer")}>
+          Login as Customer
+        </button>
 
-      <button onClick={handleLogin}>Login</button>
+        <button onClick={() => handleLogin("staff")}>
+          Login as Staff
+        </button>
+
+        <button onClick={() => handleLogin("admin")}>
+          Login as Admin
+        </button>
+      </div>
     </div>
   );
 }
+
+export default Login;
